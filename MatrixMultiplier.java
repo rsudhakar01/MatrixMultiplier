@@ -60,6 +60,17 @@ public class MatrixMultiplier {
       m1.assignEl(rowEl, i);
     }
     printMatrix(m1);
+    
+    System.out.println("Repeat for second matrix");
+    int[] rowEl2 = new int[m2.getCol()];
+    for (int i = 0; i < m2.getRow(); i++) {
+      userIn = sc.nextLine();
+      rowEl2 = assignVal(userIn.split(","), rowEl2); // all elements of a row
+      m2.assignEl(rowEl2, i);
+    }
+    printMatrix(m2);
+    
+    Matrix prodMat = new Matrix(matrixDims1[0], matrixDims2[1]);
 
   }
   
@@ -80,8 +91,17 @@ public class MatrixMultiplier {
   private static void printMatrix(Matrix m) {
     for(int i = 0; i < m.arr.length; i++) {
       for(int j = 0; j < m.arr[i].length; j++) {
-        System.out.print(m.arr[i][j] + " ");
+        if(j == 0) {
+        System.out.print("|" + m.arr[i][j] + " ");} 
+        else if(j == m.arr[i].length -1) {
+          System.out.print(" " + m.arr[i][j] + "|");
+          
+        }
+        else {
+          System.out.print(m.arr[i][j] + " ");
+        } 
       }
+      
       System.out.println();
     }
   }
